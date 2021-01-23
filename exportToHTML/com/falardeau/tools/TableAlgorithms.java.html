@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>TableAlgorithms.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #0033b3;}
+.s1 { color: #080808;}
+.s2 { color: #1750eb;}
+.s3 { color: #067d17;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+TableAlgorithms.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com.falardeau.tools;</span>
+
+<span class="s0">public class </span><span class="s1">TableAlgorithms {</span>
+
+    <span class="s0">public void </span><span class="s1">reverse(</span><span class="s0">int</span><span class="s1">[] tab){</span>
+
+        <span class="s0">int </span><span class="s1">len = tab.length - </span><span class="s2">1</span><span class="s1">;</span>
+        <span class="s0">if</span><span class="s1">(len &lt; </span><span class="s2">2</span><span class="s1">) </span><span class="s0">return</span><span class="s1">;</span>
+
+        <span class="s0">int </span><span class="s1">i = </span><span class="s2">0</span><span class="s1">, j = len;</span>
+
+        <span class="s0">while</span><span class="s1">(i &lt; j){</span>
+
+            <span class="s0">int </span><span class="s1">temp = tab[i];</span>
+            <span class="s1">tab[i] = tab[j];</span>
+            <span class="s1">tab[j] = temp;</span>
+
+            <span class="s1">i++; j--;</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">print(</span><span class="s0">int</span><span class="s1">[] tab){</span>
+        <span class="s0">for</span><span class="s1">(</span><span class="s0">int </span><span class="s1">i = </span><span class="s2">0</span><span class="s1">; i &lt; tab.length; i++){</span>
+            <span class="s1">System.out.print(tab[i] + </span><span class="s3">&quot; &quot;</span><span class="s1">);</span>
+        <span class="s1">}</span>
+        <span class="s1">System.out.println();</span>
+    <span class="s1">}</span>
+<span class="s1">}</span>
+</pre>
+</body>
+</html>
