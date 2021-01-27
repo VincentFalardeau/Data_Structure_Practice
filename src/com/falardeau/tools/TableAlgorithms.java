@@ -7,86 +7,80 @@ import java.util.ArrayList;
 
 public class TableAlgorithms {
 
-    //Exercice 1.1
+    //Reverses an array of integer
     public void reverse(int[] tab){
+        int n = tab.length;
 
-        int i = 0, j = tab.length - 1;
+        int i = 0;
+        int j = n - 1;
 
         while(i < j){
 
+            //Exchange i and j
             int temp = tab[i];
             tab[i] = tab[j];
             tab[j] = temp;
 
-            i++; j--;
+            i++;j--;
         }
     }
 
-    //Exercice 1.2
+    //Gives an array of integer containing the local maximums
     public int[] maxLocaux(int[] tab){
+        int n = tab.length;
 
-        int len = tab.length;
-
-        if(len < 3){
+        //An array of two of less elements does not contain local maximums
+        if(n < 3){
             return tab;
         }
 
+        //Retrieve the local maximums into an array list
         ArrayList<Integer> list = new ArrayList<Integer>();
+        for(int i = 1; i < n - 1; i++){
 
-        for(int i = 1; i < len - 1; i++){
             int prev = tab[i-1];
             int next = tab[i+1];
             int current = tab[i];
+
             if(current > prev && current > next){
                 list.add(current);
             }
         }
 
-        int size = list.size();
-        int[] newTab = new int[size];
-        for(int i = 0; i <  size; i++){
-            newTab[i] = list.get(i);
+        //Build an array of integer from the arraylist of integer
+        n = list.size();
+        int[] max = new int[n];
+        for(int i = 0; i <  n; i++){
+            max[i] = list.get(i);
         }
 
-        return newTab;
+        return max;
     }
 
-    //Exercice 1.3
-
+    //Removes all occurrences of x from T within a single iteration
     public int delete(int[] tab, int x){
+        int n = tab.length;
 
-        int len = tab.length;
+        if(n == 0) return 0;
 
-        //Special cases
-        if(len == 0) return 0;
-
-        //Counts the number of occurrences of x
+        //Holds the number of occurrences of non-x elements
         int count = 0;
 
-        for(int i = 0; i < len; i++){
+        for(int i = 0; i < n; i++){
 
-            while(tab[i] == x && //While the current element is x
-                    i < len-count){//And we have not yet arrived at the last portion, where all the x's were shifted
-
-                //Indicate we found another x
+            //If the current element is non-x
+            if(tab[i] != x){
+                tab[count] = tab[i];
                 count++;
-
-                //Shift the current element to the end
-                for(int j = i; j < len-1; j++){
-                    tab[j] = tab[j+1];
-                }
-                tab[len-1] = x;
             }
-
-            print(tab);
         }
 
         return count;
     }
 
+    //Left rotate d times the array arr
     public void leftRotate(int arr[], int d, int n)
     {
-        print(arr);
         /* To handle if d >= n */
         d = d % n;
 
@@ -105,19 +99,16 @@ public class TableAlgorithms {
                 if (k == i)
                     break;
                 arr[j] = arr[k];
-                //print(arr);
                 j = k;
             }
             arr[j] = temp;
-
-            print(arr);
         }
 
     }
 
     /*Function to get gcd of a and b*/
     //Greatest Common divisor
-    int plus_grand_commun_diviseur(int a, int b)
+    private int plus_grand_commun_diviseur(int a, int b)
     {
         if (b == 0)
             return a;

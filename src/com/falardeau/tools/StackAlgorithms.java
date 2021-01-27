@@ -1,109 +1,91 @@
 package com.falardeau.tools;
 
-import com.falardeau.structures.IntegerQueue;
+
+import com.falardeau.structures.ResizingArrayQueue;
 
 import java.util.*;
 
-public class PileAlgorithms {
+public class StackAlgorithms {
 
 
-    //Exercice 2.1
-    public boolean impossiblePile(char arr[]){
+    //Tells whether a sequence of character is valid or not
+    public boolean validSequence(char arr[]){
         final int n = 10;
 
-        Stack<Character> stack = new Stack<Character>();
-        Character top = arr[0];//The character on top of the pile
-        Character c = 'A';//To hold character temporarily
+        //The stack
+        Stack<Character> stack = new Stack<>();
+        //The character on top of the stack
+        Character top = arr[0];
 
-        //Initialize the pile
-        while(c<=top){
+        //Initialize the stack according to the character on top
+        Character c = 'A';
+        while(c <= top){
             stack.push(c);
             c++;
         }
 
-        //Validate the pile
+        //Validate the stack
         for(int i = 1; i < n; i++){
-            //System.out.println(Arrays.toString(stack.toArray()));
-            c = arr[i];//The current character of the array
-            if(stack.size() == 0){
+            //The current character of the array
+            c = arr[i];
+
+            //Add without condition if the stack is empty
+            if(stack.isEmpty()){
                 stack.push(c);
                 continue;
             }
-            top = stack.peek();//Retrieve the top element
 
+            //Retrieve the top element
+            top = stack.peek();
 
-
+            //In case the top is smaller
             if(top < c){
+                //Add c, and everything missing between top and c
                 while(top < c){
                     top++;
                     stack.push(top);
                 }
                 continue;
             }
-            else if(top > c){
+
+            //In case the top is greater
+            if(top > c){
+                //Remove it
                 stack.pop();
-                top = stack.peek();//Retrieve the new top element
+                //The following element should be c
+                top = stack.peek();
                 if(top != c){
                     return false;
                 }
-            }
-            else{
-                return false;
+                continue;
             }
 
-
+            //If top is c, it is not valid
+            return false;
         }
 
 
         return true;
-
-
-
-//        Character c1 = 'A';
-//        Character c2 = 'B';
-//        //c1++;
-//        //c1++;
-//        return c1 < c2;
-
-        //Fill the pile according to the first element
-
-
     }
 
-    //Exercice 2.2 a
-    public void reverse(IntegerQueue queue){
-        System.out.println(queue);
+    //Reverses a queue
+    public ResizingArrayQueue reverse(ResizingArrayQueue queue){
 
-        queue= reverse_algo(queue);
-        System.out.println(queue);
+        Object obj = queue.dequeue();
 
-    }
+        if(!queue.isEmpty()){
+            queue = reverse(queue);
 
-    private IntegerQueue reverse_algo(IntegerQueue queue){
-
-        Integer lastElement = queue.dequeue();
-
-        if(queue.isEmpty()){
-            int[] arr = {lastElement};
-            return new IntegerQueue(arr);
         }
-        queue = reverse_algo(queue);
-        queue.enqueue(lastElement);
+        queue.enqueue(obj);
         return queue;
     }
 
-    //Exercice 2.2 b
+    //Reverses a stack
     public void reverse(Stack stack){
-        System.out.println(stack);
-        reverse_algo(stack);
-        System.out.println(stack);
-
-    }
-
-    private void reverse_algo(Stack stack){
         if(stack.isEmpty() == false){
             Object top = stack.pop();
-            reverse_algo(stack);
+            reverse(stack);
             insert_at_bottom(stack, top);
         }
     }

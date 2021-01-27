@@ -2,21 +2,23 @@ package com.falardeau.structures;
 
 import java.util.Stack;
 
-public class StackQueue {
+public class StackQueue<T> {
 
-    Stack stack;
+    Stack<T> stack;
 
     public StackQueue(){
-        stack = new Stack();
+        stack = new Stack<T>();
     }
 
-    public Object enqueue(Object o){
+    //Temps de calcul: O(1)
+    public T enqueue(T o){
         return stack.push(o);
     }
 
-    public Object dequeue(){
+    //
+    public T dequeue(){
         if(stack.isEmpty()) return null;
-        Object o = stack.lastElement();
+        T o = stack.lastElement();
         remove_last_elem_from_stack(stack, 0);
         return o;
     }
@@ -25,7 +27,8 @@ public class StackQueue {
 
         if(stack.isEmpty() == false){
             Object top = stack.pop();
-            if(stack.isEmpty()){
+
+            if(stack.isEmpty()) {
                 remove_last_elem_from_stack(stack, i + 1);
             }
             else{
@@ -37,12 +40,20 @@ public class StackQueue {
         }
     }
 
+
     @Override
-    public String toString() {
+    public String toString(){
+
+        if(stack.size() == 0) return "[]";
+
         String str = "";
-        for(int i = 0; i < stack.size(); i++){
-            str+=stack.get(i)+", ";
+
+        for(T i: stack){
+            str += ", ";
+            str += i;
         }
+        //Remove the first comma and frame
+        str = "[" + str.substring(2) + "]";
         return str;
     }
 
