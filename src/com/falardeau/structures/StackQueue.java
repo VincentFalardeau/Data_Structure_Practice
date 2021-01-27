@@ -1,5 +1,6 @@
 package com.falardeau.structures;
 
+import java.util.EmptyStackException;
 import java.util.Stack;
 
 public class StackQueue<T> {
@@ -10,12 +11,10 @@ public class StackQueue<T> {
         stack = new Stack<T>();
     }
 
-    //Temps de calcul: O(1)
     public T enqueue(T o){
         return stack.push(o);
     }
 
-    //
     public T dequeue(){
         if(stack.isEmpty()) return null;
         T o = stack.lastElement();

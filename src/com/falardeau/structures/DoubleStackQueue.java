@@ -2,23 +2,22 @@ package com.falardeau.structures;
 
 import java.util.Stack;
 
-public class DoubleStackQueue {
+public class DoubleStackQueue<T> {
 
-    Stack E;
-    Stack S;
+    Stack<T> E;
+    Stack<T> S;
 
     public DoubleStackQueue() {
-        E = new Stack();
-        S = new Stack();
+        E = new Stack<T>();
+        S = new Stack<T>();
     }
 
-    public void enqueue(Object o){
+    public void enqueue(T o){
 
         E.push(o);
-
     }
 
-    public Object dequeue(){
+    public T dequeue(){
 
         int E_size = E.size();
 
@@ -29,7 +28,7 @@ public class DoubleStackQueue {
             E_size--;
         }
 
-        Object temp = E.pop();
+        T temp = E.pop();
 
         int S_size = S.size();
 
@@ -48,7 +47,7 @@ public class DoubleStackQueue {
         String str1 = "->";
 
         for(int i = 0; i < E.size(); i++){
-            str1 += E.get(i)+", ";
+            str1 += E.get(i) +", ";
         }
 
         String str2 = "<-";
