@@ -11,31 +11,31 @@ public class StackQueue<T> {
         stack = new Stack<T>();
     }
 
+    //Temps constant: O(1)
     public T enqueue(T o){
         return stack.push(o);
     }
 
+    //Cas 1: pile vide -> temps constant: O(1)
+    //Cas 2: voir complexite de remove_last_elem_from_stack
     public T dequeue(){
         if(stack.isEmpty()) return null;
         T o = stack.lastElement();
-        remove_last_elem_from_stack(stack, 0);
+        remove_last_elem_from_stack(stack);
         return o;
     }
 
-    private void remove_last_elem_from_stack(Stack stack, int i){
+    //Temps lineaire: O(n), si la pile a 5 elements, on a 5 iterations
+    private void remove_last_elem_from_stack(Stack stack){
 
-        if(stack.isEmpty() == false){
-            Object top = stack.pop();
+        Object top = stack.pop();
 
-            if(stack.isEmpty()) {
-                remove_last_elem_from_stack(stack, i + 1);
-            }
-            else{
-                remove_last_elem_from_stack(stack, i + 1);
-                stack.push(top);
-            }
+        //If top is not the last element
+        if(!stack.isEmpty()) {
 
-
+            //This will make the top element to be pushed before the rest
+            remove_last_elem_from_stack(stack);
+            stack.push(top);
         }
     }
 

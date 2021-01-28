@@ -3,12 +3,12 @@ package com.falardeau;
 import com.falardeau.structures.DoubleStackQueue;
 import com.falardeau.structures.ResizingArrayQueue;
 import com.falardeau.structures.StackQueue;
-import com.falardeau.tools.StackAlgorithms;
-import com.falardeau.tools.TableAlgorithms;
+import com.falardeau.algorithms.StackAlgorithms;
+import com.falardeau.algorithms.TableAlgorithms;
 
 import java.util.*;
 
-public class Main {
+public class Main1 {
 
     public static void main(String[] args) {
 
@@ -93,6 +93,7 @@ public class Main {
         System.out.println(Arrays.toString(stack.toArray()));
         stackAlgorithms.reverse(stack);
         System.out.println(Arrays.toString(stack.toArray()));
+        System.out.println();
 
         System.out.println("Exercice 2.3: Couper l'herbe sous le pied");
         System.out.println();

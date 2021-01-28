@@ -1,4 +1,4 @@
-package com.falardeau.tools;
+package com.falardeau.algorithms;
 
 
 import com.falardeau.structures.ResizingArrayQueue;

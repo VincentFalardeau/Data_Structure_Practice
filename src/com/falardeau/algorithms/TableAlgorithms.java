@@ -1,8 +1,5 @@
-package com.falardeau.tools;
+package com.falardeau.algorithms;
 
-import com.falardeau.structures.Bag;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class TableAlgorithms {
@@ -116,48 +113,4 @@ public class TableAlgorithms {
             return plus_grand_commun_diviseur(b, a % b);
     }
 
-    public void shift(int[] tab, int d){
-
-        System.out.print("Beginning: ");
-
-
-        int len = tab.length;
-        if(len == 0) return;
-
-        int i = 0, j = 0;
-        int navette = tab[0];
-        for(int k = 1; k < len; k++){
-            print(tab);
-            if(i+d == len && len % 2 == 0 && d%2 == 0){
-                j = 1;
-                tab[i] = navette;
-                navette = tab[i+1];
-                //tab[i] = tab[i+1];
-                i++;
-                k++;
-            }
-            else{
-                j = (i+d) % len;
-            }
-
-
-            tab[i] = tab[j];
-
-            i = j;
-
-
-        }
-
-        tab[i] = navette;
-
-        System.out.print("Result: ");
-        print(tab);
-    }
-
-    public void print(int[] tab){
-        for(int i = 0; i < tab.length; i++){
-            System.out.print(tab[i] + " ");
-        }
-        System.out.println();
-    }
 }
