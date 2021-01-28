@@ -49,6 +49,18 @@ public class Main2 {
         System.out.println("Recursive inversion:");
         linkedList.recursiveInversion();
         System.out.println(linkedList);
+        linkedList.recursiveInversion();
+        System.out.println();
+
+        System.out.println("L3: Concatenation");
+        System.out.println();
+
+        System.out.println("L4: Move to front");
+        linkedList.add(5);
+        System.out.println(linkedList);
+        linkedList.search(5);
+        System.out.println(linkedList);
+
         System.out.println();
 
 

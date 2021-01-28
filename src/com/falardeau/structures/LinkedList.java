@@ -74,7 +74,7 @@ public class LinkedList <Item> implements Iterable<Item>{
     }
 
     //Inserts an element at the beginning of the list
-    public void insertFirst(Node node){
+    private void insertFirst(Node node){
 
         //Just insert if list is empty
         if(isEmpty()) {
@@ -86,6 +86,29 @@ public class LinkedList <Item> implements Iterable<Item>{
         Node temp = HEAD.next;
         HEAD.next = node;
         HEAD.next.next = temp;
+    }
+
+    public void search(Item Y){
+
+        Node node = HEAD;
+        while(node.next != null){
+
+            if(node.next.data == Y){
+                moveNextNodeToFront(node);
+
+            }
+            else{
+                node = node.next;
+            }
+
+
+        }
+    }
+
+    //Moves the node following the given node to the front
+    private void moveNextNodeToFront(Node node){
+        Node i = removeFollowing(node);
+        insertFirst(i);
     }
 
     public Node removeFirst(){
@@ -106,32 +129,25 @@ public class LinkedList <Item> implements Iterable<Item>{
         Node navette = HEAD.next;
         while(navette.next != null){
 
-            Node i = removeFollowing(navette);
-            insertFirst(i);
+            moveNextNodeToFront(navette);
 
         }
 
     }
 
     public void recursiveInversion(){
-        Node n = removeFirst();
+        if(isEmpty()) return;
 
-        if(isEmpty()){
-            insertFirst(n);
+        recursiveInversion(HEAD.next);
+    }
 
+    private void recursiveInversion(Node navette){
+
+        if(navette.next != null){
+
+            moveNextNodeToFront(navette);
+            recursiveInversion(navette);
         }
-        else{
-            recursiveInversion();
-
-            n.next = null;
-            //n2.next = n;
-
-        }
-
-
-
-//        System.out.println(this);
-//        return n2.next;
     }
 
     //Gives the node at index N
