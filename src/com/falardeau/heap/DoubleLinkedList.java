@@ -1,15 +1,14 @@
 package com.falardeau.heap;
 
-import com.falardeau.structures.LinkedList;
-
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class LazyHeapList  implements Iterable<Comparable>{
+public class DoubleLinkedList implements Iterable<Comparable>{
 
-    private class Node implements Comparable{
+    protected class Node implements Comparable{
         Comparable data;
         Node next;
+        Node previous;
 
         public Node(Comparable data){
             this.data = data;
@@ -26,43 +25,10 @@ public class LazyHeapList  implements Iterable<Comparable>{
         }
     }
 
-    private Node HEAD;
+    protected Node HEAD;
 
-    public LazyHeapList(){
+    public DoubleLinkedList(){
         HEAD = new Node(null);
-    }
-
-    //O(1)
-    public void insert(Comparable i){
-        Node x = new Node(i);
-        if(isEmpty()){
-            HEAD.next = x;
-        }
-        else{
-            Node temp = HEAD.next;
-            HEAD.next = x;
-            HEAD.next.next = temp;
-        }
-    }
-
-    public Comparable deleteMin(){
-        Node N = HEAD.next;
-        Node minParent = null;
-        Comparable min = null;
-        while(N.next != null){
-            Comparable curr = N.next.data;
-
-            //If a smaller element is found, assign it to min
-            if(min == null || curr.compareTo(min)<0){
-                min = curr;
-                minParent = N;
-            }
-            N = N.next;
-        }
-        minParent.next.next = minParent.next;
-        return min;
-
-
     }
 
     public boolean isEmpty(){
@@ -88,14 +54,14 @@ public class LazyHeapList  implements Iterable<Comparable>{
 
     @Override
     public Iterator<Comparable> iterator() {
-        return new LazyHeapListIterator();
+        return new DoubleLinkedListIterator();
     }
 
-    private class LazyHeapListIterator implements Iterator<Comparable> {
+    private class DoubleLinkedListIterator implements Iterator<Comparable> {
 
         private Node current;
 
-        public LazyHeapListIterator(){
+        public DoubleLinkedListIterator(){
             current = HEAD;
         }
 
@@ -113,6 +79,4 @@ public class LazyHeapList  implements Iterable<Comparable>{
             return current.data;
         }
     }
-
-
 }
