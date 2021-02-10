@@ -63,6 +63,9 @@ public class Main2 {
 
         System.out.println();
 
+        for(int i = 11; i > 0; i/=2) System.out.print(i+" ");
+
+
 
 
     }
