@@ -106,6 +106,37 @@ public class Main4 {
         System.out.println("printSmaller(t, 9)");
         HeapAlgorithms.printSmaller(t, 9);
 
+        //pq.3
+        PQBinaryList binaryList = new PQBinaryList();
+        binaryList.insert(0);
+        binaryList.insert(1);
+        binaryList.insert(0);
+        binaryList.insert(1);
+        binaryList.insert(1);
+        binaryList.insert(1);
+        binaryList.insert(0);
+        System.out.println(binaryList);
+        System.out.println("Min: " + binaryList.deleteMin());
+        System.out.println(binaryList);
+        System.out.println("Min: " + binaryList.deleteMin());
+        System.out.println(binaryList);
+        System.out.println("Min: " + binaryList.deleteMin());
+        System.out.println(binaryList);
+        System.out.println("Min: " + binaryList.deleteMin());
+        System.out.println(binaryList);
+        System.out.println("Min: " + binaryList.deleteMin());
+        System.out.println(binaryList);
+        System.out.println();
+
+        //pq.4
+        PQMedian pqMedian = new PQMedian();
+        pqMedian.insert(1);
+        pqMedian.insert(2);
+        pqMedian.insert(3);
+        pqMedian.insert(6);
+        pqMedian.insert(7);
+        System.out.println(pqMedian);
+
 
     }
 }

@@ -158,6 +158,10 @@ public class PQBinaryHeap extends PriorityQueueTA<Integer> {
         return H.size();
     }
 
+    public Integer peek() {
+        return H.get(1);
+    }
+
     @Override
     public Iterator<Integer> iterator() {
         return H.iterator();
