@@ -1,5 +1,6 @@
 package com.falardeau.priorityqueue;
 
+import com.falardeau.algorithm.HeapAlgorithms;
 import com.falardeau.priorityqueue.PQEagerLinkedList;
 import com.falardeau.priorityqueue.PQLazyLinkedList;
 import com.falardeau.priorityqueue.PQArray;
@@ -78,7 +79,7 @@ public class Main4 {
         System.out.println(pq1);
         System.out.println();
 
-        //pq.2
+
         PQBinaryHeap pq2 = new PQBinaryHeap();
         pq2.insert(1);
         pq2.insert(2);
@@ -100,7 +101,11 @@ public class Main4 {
         System.out.println("Min: " + pq2.deleteMin());
         System.out.println(pq2);
 
-        //pq.3
+        //pq.2
+        int[] t = {10,16,-7,12,15,10,9,5,6,3,9,5};
+        System.out.println("printSmaller(t, 9)");
+        HeapAlgorithms.printSmaller(t, 9);
+
 
     }
 }

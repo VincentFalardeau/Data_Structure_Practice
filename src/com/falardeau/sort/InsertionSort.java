@@ -4,29 +4,41 @@ import java.util.Arrays;
 
 public class InsertionSort {
 
-    //Complexity: O(n^2)
+    /**
+     * The insertion sort.
+     *
+     * Algorithm Analysis:
+     * Considering the number of iterations.
+     *
+     * Best case (already sorted): 1 + 1 + 1 + ... + 1 = n
+     * Worst case (descending order) 1 + 2 + 3 + 4 + 5 + 6 + .. + n = n(n-1)/2 ~ (n^2)/2
+     * Average case 1/2 + 2/2 + 3/2 + ... + n/2 = n(n-1)/4 ~ (n^2)/4
+     *
+     * -> Time complexity: O(n^2)
+     * */
+    public static void sort(int[] A) {
 
-    public static void sort(int[] t) {
-        System.out.println(Arrays.toString(t));
+        System.out.println(Arrays.toString(A));
 
-        for(int i = 1; i < t.length; i++) {
+        //For every element in A
+        for(int i = 1; i < A.length; i++) {
 
-            int curr = t[i];//The current element
+            //Keep the current element in a variable
+            int x = A[i];
 
-            int j;
-            //From i - 1 to 0, shift right the elements
-            for(j = i; j > 0; j--) {
-                //Until t[j - 1] is smaller than curr
-                if(t[j - 1] < curr) {
-                    break;
-                }
-                t[j] = t[j - 1];
+            //Shift right the elements ranging from A[0] to A[i-1]
+            //that are greater than x
+            int j = i;
+            while(j > 0 && A[j - 1] > x){
+                A[j] = A[j - 1];
+                j--;
             }
-            //Insert curr at j, the index to the right the smaller element
-            t[j] = curr;
+
+            //Put x back in the hole left by the shifting
+            A[j] = x;
         }
 
-        System.out.println(Arrays.toString(t));
+        System.out.println(Arrays.toString(A));
     }
 
     public static void sortRecursive(int[] t) {

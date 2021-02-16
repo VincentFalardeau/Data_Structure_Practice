@@ -4,8 +4,26 @@ import java.util.Arrays;
 
 public class SelectionSort {
 
-    //Complexity: O(n^2)
 
+    /**
+     * The selection sort.
+     *
+     * Algorithm analysis:
+     * Considering the number of comparisons
+     * Best case (sorted): 1 + 1 + 1 + ... + 1 = n
+     * Worst case (descending order): n + (n - 1) + ... + 1 = n(n-1)/2 ~ (n^2)/2
+     * Average case: ~ (n^2)/4
+     * -> C(n) ~ n^2
+     *
+     * Considering the number of assignations
+     * Best case (sorted): 0
+     * Worst case (descending order): n
+     * Average case: n / 2
+     * -> E(n) ~ n
+     *
+     * -> Time complexity: O(n) = n^2
+     *
+     * */
     public static void sort(int[] t) {
 
         System.out.println(Arrays.toString(t));
@@ -14,14 +32,15 @@ public class SelectionSort {
         for(int i = 0; i < t.length - 1; i++) {
 
             //Find the smallest element's index between i and length - 1
-            int min = i;
+            int minIndex = i;
             for(int j = i + 1; j < t.length; j++) {
-                if(t[j] < t[min]) min = j;
+                if(t[j] < t[minIndex]) minIndex = j; //-> Comparisons in Analysis
             }
+
             //Swap i and min
-            int temp = t[i];
-            t[i] = t[min];
-            t[min] = temp;
+            int temp = t[i]; //-> Assignations in Analysis
+            t[i] = t[minIndex];
+            t[minIndex] = temp;
         }
 
         System.out.println(Arrays.toString(t));
