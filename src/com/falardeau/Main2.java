@@ -1,6 +1,6 @@
 package com.falardeau;
 
-import com.falardeau.structures.array.LinkedList;
+import com.falardeau.structures.LinkedList;
 
 public class Main2 {
 

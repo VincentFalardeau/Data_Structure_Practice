@@ -1,10 +1,10 @@
 package com.falardeau;
 
-import com.falardeau.structures.array.DoubleStackQueue;
-import com.falardeau.structures.array.ResizingArrayQueue;
-import com.falardeau.structures.array.StackQueue;
-import com.falardeau.algorithms.StackAlgorithms;
-import com.falardeau.algorithms.TableAlgorithms;
+import com.falardeau.structures.DoubleStackQueue;
+import com.falardeau.structures.ResizingArrayQueue;
+import com.falardeau.structures.StackQueue;
+import com.falardeau.algorithm.StackAlgorithms;
+import com.falardeau.algorithm.ArrayAlgorithms;
 
 import java.util.*;
 
@@ -18,7 +18,7 @@ public class Main1 {
 
         System.out.println("Exercice 1.1: Renverser un tableau");
         System.out.println();
-        TableAlgorithms tableAlgorithms = new TableAlgorithms();
+        ArrayAlgorithms tableAlgorithms = new ArrayAlgorithms();
         int tab1[] = {1,2,3,4,5};
         System.out.println(Arrays.toString(tab1));
         tableAlgorithms.reverse(tab1);
