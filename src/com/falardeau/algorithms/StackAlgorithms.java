@@ -1,7 +1,7 @@
 package com.falardeau.algorithms;
 
 
-import com.falardeau.structures.ResizingArrayQueue;
+import com.falardeau.structures.array.ResizingArrayQueue;
 
 import java.util.*;
 

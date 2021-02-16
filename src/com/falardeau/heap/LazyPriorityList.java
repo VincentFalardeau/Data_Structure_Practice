@@ -1,8 +1,5 @@
 package com.falardeau.heap;
 
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-
 public class LazyPriorityList extends LinkedList {
 
     //O(1)

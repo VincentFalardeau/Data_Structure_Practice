@@ -1,4 +1,4 @@
-package com.falardeau.structures;
+package com.falardeau.structures.array;
 /******************************************************************************
  *  Compilation:  javac ResizingArrayQueue.java
  *  Execution:    java ResizingArrayQueue < input.txt

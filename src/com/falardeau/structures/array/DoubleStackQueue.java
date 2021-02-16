@@ -1,4 +1,4 @@
-package com.falardeau.structures;
+package com.falardeau.structures.array;
 
 import java.util.Stack;
 

@@ -1,4 +1,4 @@
-package com.falardeau.structures;
+package com.falardeau.structures.array;
 
 //Exercice 2.4
 public class ArrayQueue {

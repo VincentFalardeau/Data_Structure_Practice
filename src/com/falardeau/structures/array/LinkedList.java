@@ -1,4 +1,4 @@
-package com.falardeau.structures;
+package com.falardeau.structures.array;
 
 import javax.swing.text.html.HTMLEditorKit;
 import java.util.Iterator;
