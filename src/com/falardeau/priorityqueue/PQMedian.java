@@ -11,32 +11,40 @@ import java.util.PriorityQueue;
  * */
 public class PQMedian {
 
-    //Note that a number of smallerMaxTas is stored as -1*number, to simulate the max tas effect
-    PQBinaryHeap smallerMaxTas;
-    PQBinaryHeap greaterMinTas;
+    //Max Heap of the numbers smaller than median
+    //Note that smallerMaxHeap is implemented with a Min Heap,
+    //but we simulate a Max Heap by storing a number n like this: -1*n
+    PQBinaryHeap smallerMaxHeap;
+    //Min Heap of the numbers greater than median
+    PQBinaryHeap greaterMinHeap;
+    //The median
     Integer median;
 
     public PQMedian(){
-        smallerMaxTas = new PQBinaryHeap();
-        greaterMinTas = new PQBinaryHeap();
+        smallerMaxHeap = new PQBinaryHeap();
+        greaterMinHeap = new PQBinaryHeap();
     }
 
+    /**
+     * Algorithm Analysis
+     *
+     * */
     public void insert(Integer x) {
 
         if(median == null){
             median = x;
         }
         //If we have to insert in greaterMinTas next
-        else if(greaterMinTas.size() < smallerMaxTas.size()){
+        else if(greaterMinHeap.size() < smallerMaxHeap.size()){
 
             //If the current element is smaller than the current median, the median should go on top of the greaterMinTas
             if(x < median){
-                greaterMinTas.insert(median);
+                greaterMinHeap.insert(median);
                 median = x;
             }
             //If the current element is greater than the current median, the current element should got in the greaterMinTas
             else{
-                greaterMinTas.insert(x);
+                greaterMinHeap.insert(x);
 
             }
         }
@@ -45,56 +53,65 @@ public class PQMedian {
 
             //If the current element is greater than the current median, the median should go on top of the smallerMaxTas
             if(x > median){
-                smallerMaxTas.insert(-1*median);
+                smallerMaxHeap.insert(-1*median);
                 median = x;
             }
             //If the current element is smaller than the current median, the current element should go in the smallerMaxTas
             else{
-                smallerMaxTas.insert(-1*x);
+                smallerMaxHeap.insert(-1*x);
             }
 
         }
 
-        if(median > greaterMinTas.peek()){
-            Integer temp = greaterMinTas.deleteMin();
-            greaterMinTas.insert(median);
+        //Median adjustements if needed
+        if(median > greaterMinHeap.peek()){
+            Integer temp = greaterMinHeap.deleteMin();
+            greaterMinHeap.insert(median);
             median = temp;
         }
-        else if(x<-1*smallerMaxTas.peek()){
-            Integer temp = -1*smallerMaxTas.deleteMin();
-            smallerMaxTas.insert(-1*median);
+        else if(x < -1*smallerMaxHeap.peek()){
+            Integer temp = -1*smallerMaxHeap.deleteMin();
+            smallerMaxHeap.insert(-1*median);
             median = temp;
         }
+
+
 
     }
 
     public Integer deleteMedian(){
         Integer med = this.median;
-        if(greaterMinTas.size() > smallerMaxTas.size()){
-            median = greaterMinTas.deleteMin();
+        if(greaterMinHeap.size() > smallerMaxHeap.size()){
+            median = greaterMinHeap.deleteMin();
         }
         else{
-            median = -1*smallerMaxTas.deleteMin();
+            median = -1*smallerMaxHeap.deleteMin();
         }
         return med;
     }
 
     public int size() {
-        return greaterMinTas.size() + smallerMaxTas.size();
+        return greaterMinHeap.size() + smallerMaxHeap.size();
     }
 
     @Override
     public String toString(){
         String s = "Greater than the median: \n";
-        for(Integer i: greaterMinTas){
-            s+= i + ", ";
+
+        Iterator it = greaterMinHeap.iterator();
+        it.next();//Jump the empty first cell
+        while(it.hasNext()){
+            s += it.next() + ", ";
         }
 
         s += "\nThe median: " + median;
 
         s += "\nSmaller than the median: \n";
-        for(Integer i: smallerMaxTas){
-            s+= -1*i + ", ";
+
+        it = smallerMaxHeap.iterator();
+        it.next();//Jump the empty first cell
+        while(it.hasNext()){
+            s += -1*(Integer)it.next() + ", ";
         }
 
         return s;
