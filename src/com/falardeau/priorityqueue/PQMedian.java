@@ -26,7 +26,15 @@ public class PQMedian {
     }
 
     /**
+     * @param x: the element to insert
+     *
      * Algorithm Analysis
+     *         Considering the heap.insert and the heap.deleteMin operations
+     *
+     * Worst case:
+     *          T(n) = log(n) + log(n) = 2log(n)
+     *
+     * Time complexity: O(log(n))
      *
      * */
     public void insert(Integer x) {
@@ -63,6 +71,7 @@ public class PQMedian {
 
     }
 
+    //Logarithmic time at worst
     public Integer deleteMedian(){
         Integer med = this.median;
         if(greaterMinHeap.size() > smallerMaxHeap.size()){
