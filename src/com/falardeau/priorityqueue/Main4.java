@@ -134,10 +134,16 @@ public class Main4 {
         pqMedian.insert(2);
         pqMedian.insert(3);
         pqMedian.insert(6);
+        System.out.println(pqMedian);
         pqMedian.insert(7);
         pqMedian.insert(7);
         pqMedian.insert(7);
         pqMedian.insert(7);
+        System.out.println(pqMedian);
+        pqMedian.insert(1);
+        pqMedian.insert(1);
+        pqMedian.insert(1);
+        pqMedian.insert(1);
         pqMedian.insert(1);
         System.out.println(pqMedian);
 
