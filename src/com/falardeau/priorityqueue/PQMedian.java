@@ -26,59 +26,52 @@ public class PQMedian {
     }
 
     /**
+     * @param x: the element to insert
+     *
      * Algorithm Analysis
+     *         Considering the heap.insert and the heap.deleteMin operations
+     *
+     * Worst case:
+     *          T(n) = log(n) + log(n) = 2log(n)
+     *
+     * Time complexity: O(log(n))
      *
      * */
     public void insert(Integer x) {
 
+        //Empty queue:
         if(median == null){
             median = x;
         }
-        //If we have to insert in greaterMinTas next
-        else if(greaterMinHeap.size() < smallerMaxHeap.size()){
-
-            //If the current element is smaller than the current median, the median should go on top of the greaterMinTas
-            if(x < median){
-                greaterMinHeap.insert(median);
-                median = x;
-            }
-            //If the current element is greater than the current median, the current element should got in the greaterMinTas
-            else{
-                greaterMinHeap.insert(x);
-
-            }
-        }
-        //If we have to insert in smallerMaxTas
         else{
 
-            //If the current element is greater than the current median, the median should go on top of the smallerMaxTas
-            if(x > median){
-                smallerMaxHeap.insert(-1*median);
-                median = x;
-            }
-            //If the current element is smaller than the current median, the current element should go in the smallerMaxTas
-            else{
+            //If x is smaller than the median, x goes into smallerMaxHeap
+            if(x < median){
                 smallerMaxHeap.insert(-1*x);
             }
+            //If is is greater or equal to the median, x goes into greaterMinHeap
+            else{
+                greaterMinHeap.insert(x);
+            }
 
-        }
-
-        //Median adjustements if needed
-        if(median > greaterMinHeap.peek()){
-            Integer temp = greaterMinHeap.deleteMin();
-            greaterMinHeap.insert(median);
-            median = temp;
-        }
-        else if(x < -1*smallerMaxHeap.peek()){
-            Integer temp = -1*smallerMaxHeap.deleteMin();
-            smallerMaxHeap.insert(-1*median);
-            median = temp;
+            //Median adjustement
+            if(greaterMinHeap.size() > smallerMaxHeap.size()){
+                Integer temp = median;
+                median = greaterMinHeap.deleteMin();
+                smallerMaxHeap.insert(-1*temp);
+            }
+            else if(greaterMinHeap.size() < smallerMaxHeap.size()){
+                Integer temp = median;
+                median = -1*smallerMaxHeap.deleteMin();
+                greaterMinHeap.insert(temp);
+            }
         }
 
 
 
     }
 
+    //Logarithmic time at worst
     public Integer deleteMedian(){
         Integer med = this.median;
         if(greaterMinHeap.size() > smallerMaxHeap.size()){
