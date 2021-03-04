@@ -21,7 +21,6 @@ public class QuickSort { //Also called "tri par pivot"
             sort(t, pivot + 1, end);
 
             //Donc la complexite est de O(nlog(n)), supposant que la partition se fait toujours au milieu de la liste
-
         }
     }
 
@@ -62,7 +61,6 @@ public class QuickSort { //Also called "tri par pivot"
 
         //Return the position of the pivot
         return j;
-
     }
 }
 

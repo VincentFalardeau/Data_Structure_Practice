@@ -28,8 +28,6 @@ public class Tree {
      * E(x) = 1 + min{E(x.left), E(x.right)}    sinon
      * */
 
-
-
     Node root;
 
     /**

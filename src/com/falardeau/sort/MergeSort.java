@@ -51,7 +51,7 @@ public class MergeSort {
 
             //If the next element of l is smaller than the next element of r, add it to result
             if(l[i] < r[j]) {
-                result[k] = l[i];//on l'ajouter a t
+                result[k] = l[i];//on l'ajoute a t
                 i++;
             }
             else {//Else the next element of r should be added to result
