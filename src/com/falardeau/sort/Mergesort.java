@@ -2,37 +2,39 @@ package com.falardeau.sort;
 
 import java.util.Arrays;
 
-public class MergeSort {
+public class Mergesort {
 
     //Complexity: O(nlog(n))
 
     public static void sort(int[] t) {
         System.out.println(Arrays.toString(t));
-        t = mergeSort(t);
+        t = mergesort(t);
         System.out.println(Arrays.toString(t));
     }
 
-    private static int[] mergeSort(int[] t) {
+    /**
+     * Mergesort
+     *
+     * */
+    private static int[] mergesort(int[] t) {
 
-        if(t.length <= 1) return t; //If we have 1 or less element, we consider the array is sorted
-
-        int[] l, r; //Left and right array
+        //If we have 1 or less element, we consider the array is sorted
+        if(t.length <= 1) return t;
 
         //Left array
-        int[] l1 = new int[t.length / 2];
-        System.arraycopy(t, 0, l1, 0, l1.length);
+        int[] l = new int[t.length / 2];
+        System.arraycopy(t, 0, l, 0, l.length);
 
         //Right array
-        int[] r1 = new int[t.length - l1.length];
-        System.arraycopy(t, l1.length, r1, 0, r1.length);
+        int[] r = new int[t.length - l.length];
+        System.arraycopy(t, l.length, r, 0, r.length);
 
         //Sort them
-        l = mergeSort(l1);
-        r = mergeSort(r1);
+        l = mergesort(l);
+        r = mergesort(r);
 
-        //Merge
+        //Merge them
         return merge(l, r);
-
     }
 
     /**
@@ -45,13 +47,14 @@ public class MergeSort {
 
         int[] result = new int[l.length + r.length];
 
-        int i = 0, j = 0, k = 0;//counters for respectively l, r, result
+        //counters for respectively l, r, result
+        int i = 0, j = 0, k = 0;
 
         while(i < l.length && j < r.length) {
 
             //If the next element of l is smaller than the next element of r, add it to result
             if(l[i] < r[j]) {
-                result[k] = l[i];//on l'ajoute a t
+                result[k] = l[i];
                 i++;
             }
             else {//Else the next element of r should be added to result

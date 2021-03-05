@@ -9,7 +9,12 @@ public class Main5 {
         int[] t1 = new int[12];
         System.out.println("Quick sort (tri par pivot)");
         System.arraycopy(t, 0, t1, 0, t.length);
-        QuickSort.sort(t1);
+        Quicksort.sort(t1);
+        System.out.println();
+
+        System.out.println("Quick sort (tri par pivot) - Iterative");
+        System.arraycopy(t, 0, t1, 0, t.length);
+        Quicksort.sortIter(t1);
         System.out.println();
 
         System.out.println("Selection sort");
@@ -34,7 +39,7 @@ public class Main5 {
 
         System.out.println("Merge sort");
         System.arraycopy(t, 0, t1, 0, t.length);
-        MergeSort.sort(t1);
+        Mergesort.sort(t1);
         System.out.println();
 
         System.out.println("Heap sort - trivial way");
@@ -133,10 +138,10 @@ public class Main5 {
         System.out.println();
 
         System.out.println("t.5");
-        A = new int[]{1,2,5};
-        int[] B = new int[]{3,4,6};
-        int[] C = new int[]{7,8,12};
-        int[] D = new int[]{9,10,11};
+        A = new int[]{1,2,7};
+        int[] B = new int[]{3,7};
+        int[] C = new int[]{4,5,6};
+        int[] D = new int[]{6,8,9};
         int[][] mat = new int[4][3];
         mat[0] = A;
         mat[1] = B;
@@ -146,9 +151,14 @@ public class Main5 {
         sorter.print(B);
         sorter.print(D);
         sorter.print(C);
-        int[] merged = sorter.merge(mat, 12, 4);
+        int[] merged = sorter.merge(mat, 11, 4);
         sorter.print(merged);
         System.out.println();
+
+        A = new int[]{1,3,5,7,0,2,3,4};
+        sorter.print(A);
+        System.out.println(sorter.quickSelect(A, 2));
+
 
 
 

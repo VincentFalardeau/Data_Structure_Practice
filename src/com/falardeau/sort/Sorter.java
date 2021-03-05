@@ -6,6 +6,35 @@ import java.util.Arrays;
 
 public class Sorter {
 
+    public int quickSelect(int[] A, int k){
+        return quickSelect(A, 0, A.length-1, k);
+    }
+
+    /**
+     * Search for the kth smallest element in an array
+     * @param A, the array
+     * @param l, the left index
+     * @param r, the right index
+     * @param k, specifies k in: the kth smallest
+     * @return the kth smallest element in A
+     * */
+    private int quickSelect(int[] A, int l, int r, int k){
+        if(r - l <= 2){
+            if(r == l + 2 && A[r-1] < A[l]) {
+                swap(A, l, r-1);
+                return A[k];
+            }
+        }
+        int i = partition(A, l, r);
+        if(k == i){
+            return A[k];
+        }
+        if(k < i){
+            return quickSelect(A, l, i, k);
+        }
+        return quickSelect(A, i+1, r, k);
+    }
+
     /**
      * Sorts array A using quicksort method
      * @param A, array
@@ -77,36 +106,123 @@ public class Sorter {
         }
     }
 
-    public int[] merge(int[][] sortedLists, int n, int k){
-        assert  sortedLists.length > 0;
+    public int[] merge(int[][] lists, int n, int k){
+        assert lists.length > 0;
 
+        //Heap of size k
         PQBinaryHeap heap = new PQBinaryHeap();
-
-        int currentListIndex = 0;
-        int[] currentList = sortedLists[currentListIndex];
+        //The resulting array containing all the lists
+        int[] result = new int[n];
+        //The index of the current element in the result array
+        int m = 0;
+        //The index of the current element in the lists
         int j = 0;
 
-        for(int i = 0; i < n; i++){
+        while(m < n-heap.realSize()){
 
-            //If it is time to take the next list
-            if(j == currentList.length){
-                currentListIndex++;
-                currentList = sortedLists[currentListIndex];
-                j = 0;
+            //Iterate trough the lists
+            for(int i = 0; i < k; i++){
+
+                //Make sure we have not finished to read this list and
+                if(j < lists[i].length){
+
+                    //Insert the element if the heap is not full
+                    if(heap.realSize() < k){
+                        heap.insert(lists[i][j]);
+                    }
+                    //Otherwise add the smallest element between the heap's root and the current element in result
+                    else{
+                        //In case the heap's root is smaller
+                        if(heap.peek() < lists[i][j]){
+                            result[m] = heap.deleteMin();
+                            m++;
+                            heap.insert(lists[i][j]);
+                        }
+                        //In case the current element is smaller
+                        else{
+                            result[m] = lists[i][j];
+                            m++;
+                        }
+                    }
+                }
+
             }
-
-            heap.insert(currentList[j]);
             j++;
         }
 
-        int[] merged = new int[n];
-        for(int i = 0; i < n; i++){
-            merged[i] = heap.deleteMin();
+        while(m < n){
+            result[m] = heap.deleteMin();
+            m++;
         }
 
-        return merged;
+
+        return result;
+
+//        assert M.length > 0;
+//
+//        PQBinaryHeap heap = new PQBinaryHeap();
+//        int[] merged = new int[n];
+//        int l = 0;
+//
+//        for(int i = 0; i < n/k; i++){
+//
+//            for(int j = 0; j < k; j++){
+//
+//                if(heap.realSize() < k){
+//                    heap.insert(M[j][i]);
+//                }
+//                else if(heap.peek() < M[j][i]){
+//                    merged[l] = heap.deleteMin();
+//                    l++;
+//                    heap.insert(M[j][i]);
+//                }
+//                else{
+//                    merged[l] = M[j][i];
+//                    l++;
+//                }
+//            }
+//        }
+//
+//        while(l < n){
+//            merged[l] = heap.deleteMin();
+//            l++;
+//        }
+//
+//        return merged;
+
+
+//
+//
+//        PQBinaryHeap heap = new PQBinaryHeap();
+//
+//        int currentListIndex = 0;
+//        int[] currentList = sortedLists[currentListIndex];
+//        int j = 0;
+//
+//        for(int i = 0; i < n; i++){
+//
+//            //If it is time to take the next list
+//            if(j == currentList.length){
+//                currentListIndex++;
+//                currentList = sortedLists[currentListIndex];
+//                j = 0;
+//            }
+//
+//            heap.insert(currentList[j]);
+//            j++;
+//        }
+//
+//        int[] merged = new int[n];
+//        for(int i = 0; i < n; i++){// n
+//            merged[i] = heap.deleteMin();// * log(k)
+//        }
+//
+//        return merged;
     }
 
+    /**
+     * Merges sorted array A and B
+     * */
     public int[] merge(int[] A, int[] B){
 
         int[] C = new int[A.length + B.length];

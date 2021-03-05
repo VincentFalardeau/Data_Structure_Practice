@@ -158,6 +158,10 @@ public class PQBinaryHeap extends PriorityQueueTA<Integer> {
         return H.size();
     }
 
+    public int realSize(){
+        return H.size()-1;
+    }
+
     public Integer peek() {
         return H.get(1);
     }
